@@ -1,185 +1,143 @@
+/*********************************************************************
+*
+* Class Name: Arbol
+* Author/s name: JFBR
+* Release/Creation date: 08/12/2024
+* Class version: 1.0
+* Class description: Esta clase implementa el TAD arbol B3R cuyos nodos 
+* almacenan objetos de la clase Integer. Cuenta con los métodos
+* necesarios para crear un árbol vacío, insertar un valor entero en
+* el árbol donde corresponda, buscar si existe un valor en alguno de
+* los nodos del árbol, encontrar y devolver los valores mínimo y máximo
+* del árbol, devolver el número de nodos, devolver el número de claves
+* almacenadas en los nodos del  árboly devolver una cadena con todos los
+* valores almacenados en todos los nodos ordenados por orden ascendente.
+*
+**********************************************************************/
+
 import java.util.ArrayList;
 import java.util.List;
-
 public class Arbol {
 
 	private Nodo raiz;
-
+	
+	/*********************************************************************
+	 * Method name: Arbol
+	 * 
+	 * Description of the Method: Constructor de un árbol vacío, cuyo nodo
+	 * raíz sera null.
+	 * 
+	 * Calling arguments:- None.
+	 * 
+	 * Return value: Una instancia de la clase Arbol cuya raíz es null
+	 * 
+	 *********************************************************************/
+	
 	public Arbol() {
 		this.raiz = null;
 	}
-
-	private Nodo obtenerHojaDeInsercion(Nodo nodoActual, Integer valor) throws ValorDuplicadoException{
-		Nodo hojaDeInsercion = null;
-		
-		if(nodoActual != null) {
-			Integer claveIzquierda = nodoActual.getClaveIzquierda();
-			Integer claveDerecha = nodoActual.getClaveDerecha();
-
-			if(!nodoActual.esHoja()) {
-				if(valor < claveIzquierda) {
-					hojaDeInsercion = this.obtenerHojaDeInsercion(nodoActual.getHijoIzquierdo(), valor);
-				}else if(claveDerecha == null || valor > claveDerecha) {
-					hojaDeInsercion = this.obtenerHojaDeInsercion(nodoActual.getHijoDerecho(), valor);
-				}else {
-					hojaDeInsercion = this.obtenerHojaDeInsercion(nodoActual.getHijoCentral(), valor);
-				}
-			}else {
-				hojaDeInsercion = nodoActual;
-			}
-		}
-		
-		return hojaDeInsercion;
-	}
-
-	private List<Nodo> obtenerHermanosDeNodo(Nodo nodoObjetivo){
-		List<Nodo> listaHermanos = new ArrayList<Nodo>();
-
-		Nodo nodoPadre = nodoObjetivo.getPadre();
-		
-		if(nodoPadre != null) {
-			Nodo padreHijoIzquierdo = nodoPadre.getHijoIzquierdo();
-			Nodo padreHijoCentral = nodoPadre.getHijoCentral();
-			Nodo padreHijoDerecho = nodoPadre.getHijoDerecho();
-
-			if(padreHijoIzquierdo != null && nodoObjetivo.equals(padreHijoIzquierdo)) {
-				if(padreHijoCentral != null) {
-					listaHermanos.add(padreHijoCentral);
-				}
-				if(padreHijoDerecho != null) {
-					listaHermanos.add(padreHijoDerecho);
-				}
-			}else if(padreHijoCentral != null && nodoObjetivo.equals(padreHijoCentral)) {
-				if(padreHijoIzquierdo != null) {
-					listaHermanos.add(padreHijoIzquierdo);
-				}
-				if(padreHijoDerecho != null) {
-					listaHermanos.add(padreHijoDerecho);
-				}
-			}else if(padreHijoDerecho != null && nodoObjetivo.equals(padreHijoDerecho)) {
-				if(padreHijoIzquierdo != null) {
-					listaHermanos.add(padreHijoIzquierdo);
-				}
-				if(padreHijoCentral != null) {
-					listaHermanos.add(padreHijoCentral);
-				}
-			}
-		}
-		
-		return listaHermanos;
-	}
-
-	private void ordenarListaNodosHermano(List<Nodo> listaHermanos) {
-	    Nodo nodoMinimo;
-	    int indiceMinimo;
-
-	    for (int i = 0; i < listaHermanos.size() - 1; i++) {
-	        nodoMinimo = listaHermanos.get(i);
-	        indiceMinimo = i;
-
-	        // Encontrar el índice del nodo con la clave izquierda mínima
-	        for (int j = i + 1; j < listaHermanos.size(); j++) {
-	            Nodo nodoComparar = listaHermanos.get(j);
-	            if (nodoComparar.getClaveIzquierda() < nodoMinimo.getClaveIzquierda()) {
-	                nodoMinimo = nodoComparar;
-	                indiceMinimo = j;
-	            }
-	        }
-
-	        // Intercambiar el nodo actual con el nodo con la clave mínima
-	        if (indiceMinimo != i) {
-	            Nodo temp = listaHermanos.get(i);
-	            listaHermanos.set(i, listaHermanos.get(indiceMinimo));
-	            listaHermanos.set(indiceMinimo, temp);
-	        }
-	    }
-	}
-
 	
-	
-	public void insertarValorSobreNodo(Nodo nodoDeInsercion, Integer valor, List<Nodo> listaHijos) {
-		Nodo nodoPadre;
-		Nodo nodoPadreDerecho;
-	
-		if(nodoDeInsercion == null) {// Caso de raiz nul
+	/*********************************************************************
+	 * Method name: insertarValor
+	 * 
+	 * Description of the Method: Método para insertar un valor entero en el
+	 * árbol, de tal forma que, para todo nodo, el valor de su clave izquierda
+	 * será mayor que cualquier valor el el subárbol izquierdo de dicho nodo, 
+	 * su clave derecha (si existe) será mayor o igual que la clave derecha y
+	 * mayor que los valores almacenados en los nodos del subárbol enraizado
+	 * en el hijo central, pero menor que los valores del subárbol derecho.
+	 * 
+	 * Calling arguments:- valor(int): El valor entero que se quiere insertar
+	 * en algún nodo del árbol, donde proceda según su valor.
+	 * 
+	 * Return value: void
+	 * 
+	 *********************************************************************/
+	public void insertarValor(int valor) {
+		if(this.raiz==null) {
 			this.raiz = new Nodo();
 			this.raiz.setClaveIzquierda(valor);
-			
-			nodoPadre = this.raiz;
-			nodoPadreDerecho = null;
-		}else {// Caso de árbol con raiz
-
-			// Nodos padre (en caso de que el se divida se popula uno nuevo)
-			nodoPadre = nodoDeInsercion;
-			nodoPadreDerecho = null;
-
-			Integer nodoDeInsercionClaveIzquierda = nodoDeInsercion.getClaveIzquierda();
-			Integer nodoDeInsercionClaveDerecha= nodoDeInsercion.getClaveDerecha();
-
-			// Caso 1: Nodo de insercion no tiene clave derecha
-			if(nodoDeInsercionClaveDerecha == null) {
-				Integer valorMenor = valor < nodoDeInsercionClaveIzquierda ? valor : nodoDeInsercionClaveIzquierda;
-				Integer valorMayor = valor < nodoDeInsercionClaveIzquierda ? nodoDeInsercionClaveIzquierda : valor;
-				nodoPadre.setClaveIzquierda(valorMenor);
-				nodoPadre.setClaveDerecha(valorMayor);
-			}else { // Caso 2: Tiene 2 claves, rompemos el nodoPadre en dos
-				Integer[] clavesOrdenadas = nodoDeInsercion.obtenerValoresOrdenados(valor);
-
-				nodoPadre = new Nodo();
-				nodoPadre.setClaveIzquierda(clavesOrdenadas[0]);
-				
-				nodoPadreDerecho = new Nodo();
-				nodoPadreDerecho.setClaveIzquierda(clavesOrdenadas[2]);
-
-				List<Nodo> nuevaListaHijos = this.obtenerHermanosDeNodo(nodoDeInsercion);
-				nuevaListaHijos.add(nodoPadre);
-				nuevaListaHijos.add(nodoPadreDerecho);
-				this.ordenarListaNodosHermano(nuevaListaHijos);
-				this.insertarValorSobreNodo(nodoDeInsercion.getPadre(), clavesOrdenadas[1], nuevaListaHijos);
+		}else
+			insertarValorEnNodo(this.raiz,valor);
+	}
+	
+	/*********************************************************************
+	 * Method name: insertarValorEnNodo
+	 * 
+	 * Description of the Method: Método recursivo para insertar un valor entero
+	 * en el árbol, de tal forma que, para todo nodo, el valor de su clave
+	 * izquierda será mayor que cualquier valor el el subárbol izquierdo de 
+	 * dicho nodo, su clave derecha (si existe) será mayor o igual que la 
+	 * clave izquierda ymayor que los valores almacenados en los nodos del
+	 * subárbol enraizado en el hijo central, pero menor que los valores del 
+	 * subárbol derecho.
+	 * 
+	 * Calling arguments:- nodo(Nodo): Un objeto de la clase Nodo cuyas claves 
+	 * serán evaluadas en esta llamada para la inserción del valor. -valor(int):
+	 * El valor entero que se quiere insertar en algún nodo del árbol, donde 
+	 * proceda según su valor.
+	 * 
+	 * Return value: Un objeto de la clase Nodo cuya clave izquierda es valor
+	 * y que se corresponde con el nuevo nodo a insertar (si el primer argumento
+	 * es null),o bien el nodo hijo correspondiente del primer argumento (bien
+	 * tal cual estaba antes de la llamada recursiva o bien con valor insertado en su
+	 * clave derecha si esta era null y el valor a insertar era mayor que la 
+	 * clave izquierda).		
+	 * 
+	 *********************************************************************/
+	public Nodo insertarValorEnNodo(Nodo nodo, int valor) {
+		if(nodo == null) {
+			nodo = new Nodo();
+			nodo.setClaveIzquierda(valor);
+		}
+		else {
+			if(valor < nodo.getClaveIzquierda()) {
+				nodo.setHijoIzquierdo(insertarValorEnNodo(nodo.getHijoIzquierdo(),valor));
+			}else if (nodo.getClaveDerecha()==null) {
+				nodo.setClaveDerecha(valor);
+			}else if (valor < nodo.getClaveDerecha()) {
+				nodo.setHijoCentral(insertarValorEnNodo(nodo.getHijoCentral(),valor));
+			}else {
+				nodo.setHijoDerecho(insertarValorEnNodo(nodo.getHijoDerecho(),valor));
 			}
 		}
-		
-		// Agregar conexiones padre-hijo con 1 padre de 3 hijos
-		if(nodoPadreDerecho == null && listaHijos.size() == 2) {
-			nodoPadre.setHijoIzquierdo(listaHijos.get(0));
-			nodoPadre.setHijoDerecho(listaHijos.get(1));
-			
-			listaHijos.get(0).setPadre(nodoPadre);
-			listaHijos.get(1).setPadre(nodoPadre);
-		}
-		if(nodoPadreDerecho == null && listaHijos.size() == 3) {
-			nodoPadre.setHijoIzquierdo(listaHijos.get(0));
-			nodoPadre.setHijoCentral(listaHijos.get(1));
-			nodoPadre.setHijoDerecho(listaHijos.get(2));
-			
-			listaHijos.get(0).setPadre(nodoPadre);
-			listaHijos.get(1).setPadre(nodoPadre);
-			listaHijos.get(2).setPadre(nodoPadre);
-		}else if(listaHijos.size() == 4){ // Conexiones con padre dividido (4 hijos)
-			nodoPadre.setHijoIzquierdo(listaHijos.get(0));
-			nodoPadre.setHijoDerecho(listaHijos.get(1));
-			nodoPadreDerecho.setHijoIzquierdo(listaHijos.get(2));
-			nodoPadreDerecho.setHijoDerecho(listaHijos.get(3));
-
-			listaHijos.get(0).setPadre(nodoPadre);
-			listaHijos.get(1).setPadre(nodoPadre);
-			listaHijos.get(2).setPadre(nodoPadreDerecho);
-			listaHijos.get(3).setPadre(nodoPadreDerecho);
-		}
+		return nodo;
 	}
 	
-
-	public void insertarValor(int valor) throws ValorDuplicadoException {
-		Nodo hojaDeInsercion = this.obtenerHojaDeInsercion(this.raiz, valor);
-		List<Nodo> listaHijos = new ArrayList<Nodo>();
-		insertarValorSobreNodo(hojaDeInsercion, valor, listaHijos);
-	}
-	
+	/*********************************************************************
+	 * Method name: buscar
+	 * 
+	 * Description of the Method: Método que permite comprobar si un determinado
+	 * valor entero se encuentra almacenado como clave izquierda o derecha de
+	 * alguno de los nodos del árbol.
+	 * 
+	 * Calling arguments:-valor(int): El valor entero que se quiere buscar en 
+	 * las claves de los nodos del árbol
+	 * 
+	 * Return value: Un boolean que será true si se encontró en algún nodo del
+	 * árbol el valor buscado y false en caso contrario		
+	 * 
+	 *********************************************************************/
 	public boolean buscar(int valor) {
 		boolean resultado = valorEnNodo(this.raiz,valor);
 		return resultado;
 	}
 	
+	/*********************************************************************
+	 * Method name: valorEnNodo
+	 * 
+	 * Description of the Method: Método que permite comprobar si un determinado
+	 * valor entero se encuentra almacenado como clave izquierda o derecha del
+	 * nodo pasado como argumento o de cualquiera de sus descendientes.
+	 * 
+	 * Calling arguments:-nodo(Nodo): Nodo cuyas claves (y claves de sus descendientes)
+	 * se exploran en la llamada. -valor(int): El valor entero que se quiere buscar.
+	 * 
+	 * Return value: Un boolean que será true si se encontró en algún descendiente
+	 * (o en el propio nodo) del nodo pasado como argumento el valor buscado
+	 * y false en caso contrario		
+	 * 
+	 *********************************************************************/
 	private boolean valorEnNodo(Nodo nodo, int valor) {
 		boolean resultado = nodo!=null;
 		if(resultado) {
@@ -198,10 +156,33 @@ public class Arbol {
 		return resultado;
 	}
 	
+	/*********************************************************************
+	 * Method name: getNumNodos
+	 * 
+	 * Description of the Method: Método que devuelve el número de nodos del
+	 * árbol.
+	 * 
+	 * Calling arguments:-None.
+	 * 
+	 * Return value: Un entero con el número de nodos presentes en el árbol.
+	 * 
+	 *********************************************************************/
 	public int getNumNodos() {
 		return calcNumNodos(this.raiz);
 	}
-	
+	/*********************************************************************
+	 * Method name: calcNumNodos
+	 * 
+	 * Description of the Method: Método que devuelve el número de nodos del
+	 * árbol.
+	 * 
+	 * Calling arguments:-nodo(Nodo): El nodo que se contabiliza en cada llamada
+	 * recursiva.
+	 * 
+	 * Return value: Un entero con el número de nodos del los subárboles izquierdo
+	 * central y derecho del nodo pasado como argumento más 1 (se contabiliza el propio nodo).
+	 * 
+	 *********************************************************************/
 	private int calcNumNodos(Nodo nodo) {
 		int res = 0;
 		if(nodo != null) {
@@ -213,10 +194,36 @@ public class Arbol {
 		return res;
 	}
 	
+	/*********************************************************************
+	 * Method name: getNumClaves
+	 * 
+	 * Description of the Method: Método que devuelve el número de claves 
+	 * almacenadas en los nodos del árbol.
+	 * 
+	 * Calling arguments:-None.
+	 * 
+	 * Return value: Un entero con el número de claves de los nodos del árbol.
+	 * 
+	 *********************************************************************/
 	public int getNumClaves() {
 		return calcNumClaves(this.raiz);
 	}
 	
+	/*********************************************************************
+	 * Method name: calcNumClaves
+	 * 
+	 * Description of the Method: Método que devuelve el número de claves 
+	 * almacenadas en el nodo pasado como argumento más las claves almacenadas
+	 * en los subárboles enraizados en el hijo izquierdo, central y derecho
+	 * de ese nodo.
+	 * 
+	 * Calling arguments:-nodo(Nodo): El nodo cuyas claves (y las de sus subárboles)
+	 * se contabilizan.
+	 * 
+	 * Return value: Un entero con el número de claves del los subárboles izquierdo
+	 * central y derecho del nodo pasado como argumento más las claves de dicho nodo.
+	 * 
+	 *********************************************************************/
 	private int calcNumClaves(Nodo nodo) {
 		int res = 0;
 		if(nodo != null) {
@@ -231,10 +238,36 @@ public class Arbol {
 		return res;
 	}
 	
+	/*********************************************************************
+	 * Method name: getValoresOrdenados
+	 * 
+	 * Description of the Method: Método que devuelve una cadena de caracteres
+	 * con los valores almacenados en los nodos del arbol en orden ascendente.
+	 * 
+	 * Calling arguments:-None
+	 * 
+	 * Return value: Una cadena de caracteres con los valores almacenados en
+	 * los nodos del arbol en orden ascendente.
+	 * 
+	 *********************************************************************/
 	public String getValoresOrdenados() {
-		return calcCadena(this.raiz).toString();
+		return calcCadena(this.raiz);
 	}
 	
+	/*********************************************************************
+	 * Method name: calcCadena
+	 * 
+	 * Description of the Method: Método que devuelve una cadena de caracteres
+	 * con los valores,en orden ascendente, almacenados en el nodo que se pasa
+	 * como parámetro y en sus descendientes.
+	 * 
+	 * Calling arguments:-nodo(Nodo): El nodo cuyas claves y las de sus descendientes
+	 * se devuelven ordenadas en una cadena de caracteres
+	 * 
+	 * Return value:Una cadena de caracteres con los valores,en orden ascendente,
+	 * almacenados en el nodo que se pasa como parámetro y en sus descendientes.
+	 * 
+	 *********************************************************************/
 	private String calcCadena(Nodo nodo) {
 		String cad = "";
 		if(nodo != null) {
