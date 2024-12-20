@@ -281,7 +281,6 @@ public class Arbol {
 		}
 		return cad;
 	}
-	//throws NullPointerException poner si es necesario en Min y Max
 	
 	public int getValorMin() {
 		return calcValorMin(this.raiz);
@@ -302,10 +301,12 @@ public class Arbol {
 	
 	public int calcValorMax(Nodo nodo) {
 		int valorMax;
-		if(nodo.getHijoDerecho()==null)
-			valorMax=nodo.getClaveDerecha();
+		if(nodo.getHijoDerecho()!=null) 
+				valorMax=calcValorMax(nodo.getHijoDerecho());
+		else if(nodo.getClaveDerecha()!=null)
+				valorMax=nodo.getClaveDerecha();
 		else
-			valorMax=calcValorMax(nodo.getHijoDerecho());
+			    valorMax=nodo.getClaveIzquierda();
 		return valorMax;
 	}
 }
