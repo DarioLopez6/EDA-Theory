@@ -282,7 +282,9 @@ public class Arbol {
 		return cad;
 	}
 	
-	public int getValorMin() {
+	public int getValorMin() throws ArbolVacioException {
+		if(this.raiz==null)
+			throw new ArbolVacioException();
 		return calcValorMin(this.raiz);
 	}
 	
@@ -295,7 +297,9 @@ public class Arbol {
 		return valorMin;
 	}
 	
-	public int getValorMax() {
+	public int getValorMax() throws ArbolVacioException {
+		if(this.raiz==null)
+			throw new ArbolVacioException();
 		return calcValorMax(this.raiz);
 	}
 	

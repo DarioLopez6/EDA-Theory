@@ -13,13 +13,15 @@ public class Main {
 					leerFichero(fichero);
 				} catch (FileNotFoundException e) {
 					System.out.println("Fichero no encontrado");
+				} catch (ArbolVacioException e) {
+					System.out.println("Error, el arbol esta vacio");
 				}
 			}
 		} while (fichero != "");
-
+		System.out.println("Programa terminado");
 	}
 
-	public static void leerFichero(String fichero) throws FileNotFoundException {
+	public static void leerFichero(String fichero) throws FileNotFoundException, ArbolVacioException {
 
 		FicheroSecuencial<Linea> f = new FicheroSecuencial<Linea>(fichero, " ");
 		Linea line = new Linea();
@@ -65,7 +67,6 @@ public class Main {
 					System.out.println("Opcion incorrecta leida");
 					break;
 				}
-				System.out.println("1");
 			}
 		}
 	}
