@@ -1,0 +1,14 @@
+c
+i 5
+i 15
+i 25
+i 30
+nn
+nk
+s
+b 15
+b 7
+i 123
+mn
+mx
+s
