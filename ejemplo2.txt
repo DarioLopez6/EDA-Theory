@@ -1,0 +1,18 @@
+c
+i 5
+i 15
+c
+i 10
+i 30
+nn
+nk
+i -5
+i -15
+s
+c
+b 15
+b 7
+i 123
+mn
+mx
+s

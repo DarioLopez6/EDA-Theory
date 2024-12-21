@@ -8,7 +8,7 @@ public class Main {
 		do {
 			System.out.println("Introduzca el nombre del fichero");
 			fichero = lectura.nextLine();
-			if (fichero != "") {
+			if (!fichero.equals("")) {
 				try {
 					leerFichero(fichero);
 				} catch (FileNotFoundException e) {
@@ -17,7 +17,7 @@ public class Main {
 					System.out.println("Error, el arbol esta vacio");
 				}
 			}
-		} while (fichero != "");
+		} while (!fichero.equals(""));
 		System.out.println("Programa terminado");
 	}
 
