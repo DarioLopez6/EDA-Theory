@@ -61,6 +61,8 @@ public class Main {
 * 
 * Return value: None.
 * 
+* Exception: se lanzan las excepciones para cuando no se encuentra el fichero(FileNotFoundException) y cuando el arbol esta vacio (ArbolVacioException).
+* 
 *********************************************************************/
 
 
