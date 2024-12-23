@@ -1,6 +1,35 @@
+/*********************************************************************
+*
+* Class Name: Main
+* Author/s name: AEJ
+* Release/Creation date: 018/12/2024
+* Class version: 1.0
+* Class description: Esta es la clase principal la cual se ejecuta. Cuenta con los métodos
+* necesarios para ejecutar el programa completo y leer el fichero.
+*
+**********************************************************************/
+package snippet;
+
+
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 public class Main {
+
+
+/*********************************************************************
+* Method name: main
+* 
+* Description of the Method: método principal(main) para ejecutar el programa, 
+* este método inicia y termina el programa, también es el que llama al método 
+* leerFichero y se encarga de las excepciones.
+* 
+* Calling arguments:- None.
+* 
+* Return value: None.
+* 
+*********************************************************************/
+
+
 	public static void main(String[] args) {
 		Scanner lectura = new Scanner(System.in);
 		String fichero;
@@ -20,6 +49,20 @@ public class Main {
 		} while (!fichero.equals(""));
 		System.out.println("Programa terminado");
 	}
+
+/*********************************************************************
+* Method name: leerFichero
+* 
+* Description of the Method: método para leer el fichero con listas, también lanzan las excepciones 
+* FileNotFoundException y ArbolVacioException por que se trabaja con ficheros y arboles. Este método se 
+* encargar de hacer y mostrar por pantalla lo que se pide por el archivo según las funciones especificadas.
+* 
+* Calling arguments:- fichero(String): El nombre del fichero del cual se van a sacar los datos.
+* 
+* Return value: None.
+* 
+*********************************************************************/
+
 
 	public static void leerFichero(String fichero) throws FileNotFoundException, ArbolVacioException {
 
