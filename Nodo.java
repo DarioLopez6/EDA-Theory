@@ -1,6 +1,6 @@
 /*********************************************************************
  * Class Name: Nodo
- * Author/s name: Tu Nombre
+ * Author/s name: JFBR
  * Release/Creation date: 19/12/2024
  * Class version: 1.0
  * Class description: Esta clase representa un nodo para un árbol, con referencias
