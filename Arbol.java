@@ -174,7 +174,7 @@ public class Arbol {
 	 * Method name: calcNumNodos
 	 * 
 	 * Description of the Method: Método que devuelve el número de nodos del
-	 * árbol.
+	 * árbol enraizado en el nodo que se pasa como parámetro.
 	 * 
 	 * Calling arguments:-nodo(Nodo): El nodo que se contabiliza en cada llamada
 	 * recursiva.
