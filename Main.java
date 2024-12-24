@@ -8,7 +8,6 @@
 * necesarios para ejecutar el programa completo y leer el fichero.
 *
 **********************************************************************/
-package snippet;
 
 
 import java.util.Scanner;
@@ -61,7 +60,7 @@ public class Main {
 * 
 * Return value: None.
 * 
-* Exception: se lanzan las excepciones para cuando no se encuentra el fichero(FileNotFoundException) y cuando el arbol esta vacio (ArbolVacioException).
+* Exception: se lanzan las excepciones para cuando no se encuentra el fichero(FileNotFoundException) y cuando el arbol esta vacio y se llama al método de cálculo del mínimo o máximo(ArbolVacioException).
 * 
 *********************************************************************/
 
