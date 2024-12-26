@@ -52,7 +52,7 @@ public class Nodo {
      * Method name: setPadre
      * Description: método que establece el nodo padre del nodo actual.
      * Calling arguments:
-     * - padre(Nodo): Nodo que será el padre.
+     * -Nodo padre : Nodo que será el padre.
      * Return value: None.
      *********************************************************************/
     public void setPadre(Nodo padre) {
@@ -73,7 +73,7 @@ public class Nodo {
      * Method name: setHijoIzquierdo
      * Description: método que establece el hijo izquierdo del nodo actual.
      * Calling arguments:
-     * - hijoIzquierdo(Nodo): Nodo que será el hijo izquierdo.
+     * - Nodo hijoIzquierdo : Nodo que será el hijo izquierdo.
      * Return value: None.
      *********************************************************************/
     public void setHijoIzquierdo(Nodo hijoIzquierdo) {
@@ -94,7 +94,7 @@ public class Nodo {
      * Method name: setHijoCentral
      * Description: método que establece el hijo central del nodo actual.
      * Calling arguments:
-     * - hijoCentral(Nodo): Nodo que será el hijo central.
+     * - Nodo hijoCentral : Nodo que será el hijo central.
      * Return value: None.
      *********************************************************************/
     public void setHijoCentral(Nodo hijoCentral) {
@@ -115,7 +115,7 @@ public class Nodo {
      * Method name: setHijoDerecho
      * Description: método que establece el hijo derecho del nodo actual.
      * Calling arguments:
-     * - hijoDerecho(Nodo): Nodo que será el hijo derecho.
+     * - Nodo hijoDerecho : Nodo que será el hijo derecho.
      * Return value: None.
      *********************************************************************/
     public void setHijoDerecho(Nodo hijoDerecho) {
@@ -136,7 +136,7 @@ public class Nodo {
      * Method name: setClaveIzquierda
      * Description: método que establece la clave izquierda del nodo actual.
      * Calling arguments:
-     * - claveIzquierda(Integer): Valor para la clave izquierda.
+     * - Integer claveIzquierda : Valor para la clave izquierda.
      * Return value: None.
      *********************************************************************/
     public void setClaveIzquierda(Integer claveIzquierda) {
@@ -157,7 +157,7 @@ public class Nodo {
      * Method name: setClaveDerecha
      * Description: método que establece la clave derecha del nodo actual.
      * Calling arguments:
-     * - claveDerecha(Integer): Valor para la clave derecha.
+     * -Integer claveDerecha : Valor para la clave derecha.
      * Return value: None.
      *********************************************************************/
     public void setClaveDerecha(Integer claveDerecha) {
@@ -168,8 +168,8 @@ public class Nodo {
      * Method name: obtenerValoresOrdenados
      * Description: método que ordena las claves del nodo según un nuevo valor.
      * Calling arguments:
-     * - nuevoValor(Integer): Valor para comparar con las claves del nodo.
-     * Return value: nodosOrdenados(Integer[]): Array con las claves ordenadas.
+     * -Integer nuevoValor : Valor para comparar con las claves del nodo.
+     * Return value: Integer[] nodosOrdenados : Array con las claves ordenadas.
      *********************************************************************/
     public Integer[] obtenerValoresOrdenados(Integer nuevoValor) {
         Integer[] nodosOrdenados = new Integer[3];
