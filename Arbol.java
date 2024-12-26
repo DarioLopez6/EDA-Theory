@@ -47,7 +47,7 @@ public class Arbol {
 	 * mayor que los valores almacenados en los nodos del subárbol enraizado
 	 * en el hijo central, pero menor que los valores del subárbol derecho.
 	 * 
-	 * Calling arguments:- valor(int): El valor entero que se quiere insertar
+	 * Calling arguments:- int valor: El valor entero que se quiere insertar
 	 * en algún nodo del árbol, donde proceda según su valor.
 	 * 
 	 * Return value: void
@@ -72,7 +72,7 @@ public class Arbol {
 	 * subárbol enraizado en el hijo central, pero menor que los valores del 
 	 * subárbol derecho.
 	 * 
-	 * Calling arguments:- nodo(Nodo): Un objeto de la clase Nodo cuyas claves 
+	 * Calling arguments:- Nodo nodo: Un objeto de la clase Nodo cuyas claves 
 	 * serán evaluadas en esta llamada para la inserción del valor. -valor(int):
 	 * El valor entero que se quiere insertar en algún nodo del árbol, donde 
 	 * proceda según su valor.
@@ -111,7 +111,7 @@ public class Arbol {
 	 * valor entero se encuentra almacenado como clave izquierda o derecha de
 	 * alguno de los nodos del árbol.
 	 * 
-	 * Calling arguments:-valor(int): El valor entero que se quiere buscar en 
+	 * Calling arguments:-int valor: El valor entero que se quiere buscar en 
 	 * las claves de los nodos del árbol
 	 * 
 	 * Return value: Un boolean que será true si se encontró en algún nodo del
@@ -130,8 +130,8 @@ public class Arbol {
 	 * valor entero se encuentra almacenado como clave izquierda o derecha del
 	 * nodo pasado como argumento o de cualquiera de sus descendientes.
 	 * 
-	 * Calling arguments:-nodo(Nodo): Nodo cuyas claves (y claves de sus descendientes)
-	 * se exploran en la llamada. -valor(int): El valor entero que se quiere buscar.
+	 * Calling arguments:-Nodo nodo: Nodo cuyas claves (y claves de sus descendientes)
+	 * se exploran en la llamada. -int valor: El valor entero que se quiere buscar.
 	 * 
 	 * Return value: Un boolean que será true si se encontró en algún descendiente
 	 * (o en el propio nodo) del nodo pasado como argumento el valor buscado
@@ -176,7 +176,7 @@ public class Arbol {
 	 * Description of the Method: Método que devuelve el número de nodos del
 	 * árbol enraizado en el nodo que se pasa como parámetro.
 	 * 
-	 * Calling arguments:-nodo(Nodo): El nodo que se contabiliza en cada llamada
+	 * Calling arguments:-Nodo nodo: El nodo que se contabiliza en cada llamada
 	 * recursiva.
 	 * 
 	 * Return value: Un entero con el número de nodos del los subárboles izquierdo
@@ -217,7 +217,7 @@ public class Arbol {
 	 * en los subárboles enraizados en el hijo izquierdo, central y derecho
 	 * de ese nodo.
 	 * 
-	 * Calling arguments:-nodo(Nodo): El nodo cuyas claves (y las de sus subárboles)
+	 * Calling arguments:-Nodo nodo: El nodo cuyas claves (y las de sus subárboles)
 	 * se contabilizan.
 	 * 
 	 * Return value: Un entero con el número de claves del los subárboles izquierdo
@@ -261,7 +261,7 @@ public class Arbol {
 	 * con los valores,en orden ascendente, almacenados en el nodo que se pasa
 	 * como parámetro y en sus descendientes.
 	 * 
-	 * Calling arguments:-nodo(Nodo): El nodo cuyas claves y las de sus descendientes
+	 * Calling arguments:-Nodo nodo: El nodo cuyas claves y las de sus descendientes
 	 * se devuelven ordenadas en una cadena de caracteres
 	 * 
 	 * Return value:Una cadena de caracteres con los valores,en orden ascendente,
@@ -281,12 +281,35 @@ public class Arbol {
 		}
 		return cad;
 	}
+	/*********************************************************************
+	 * Method name: getValorMin
+	 * 
+	 * Description of the Method: Método que devuelve un int que sera el valor minimo.
+	 * 
+	 * Calling arguments:-None
+	 * 
+	 * Return value:Un numero int que serña el valor minimo.
+	 * 
+  	 * Exception: se lanza la excepciones para cuando el arbol esta vacio
+	 *
+	 *********************************************************************/
 	
 	public int getValorMin() throws ArbolVacioException {
 		if(this.raiz==null)
 			throw new ArbolVacioException();
 		return calcValorMin(this.raiz);
 	}
+
+	/*********************************************************************
+	 * Method name: calcValorMin
+	 * 
+	 * Description of the Method: Método que calcula un int que sera el valor minimo.
+	 * 
+	 * Calling arguments:-Nodo nodo: El nodo para poder calcular el valor minimo.
+	 * 
+	 * Return value:Un numero int que serña el valor minimo.
+	 *
+	 *********************************************************************/
 	
 	public int calcValorMin(Nodo nodo) {
 		int valorMin;
@@ -296,13 +319,35 @@ public class Arbol {
 			valorMin=calcValorMin(nodo.getHijoIzquierdo());
 		return valorMin;
 	}
+
+	/*********************************************************************
+	 * Method name: getValorMax
+	 * 
+	 * Description of the Method: Método que devuelve un int que sera el valor maximo.
+	 * 
+	 * Calling arguments:-None
+	 * 
+	 * Return value:Un numero int que serña el valor maximo.
+	 * 
+  	 * Exception: se lanza la excepciones para cuando el arbol esta vacio
+	 *
+	 *********************************************************************/
 	
 	public int getValorMax() throws ArbolVacioException {
 		if(this.raiz==null)
 			throw new ArbolVacioException();
 		return calcValorMax(this.raiz);
 	}
-	
+	/*********************************************************************
+	 * Method name: calcValorMax
+	 * 
+	 * Description of the Method: Método que calcula un int que sera el valor maximo.
+	 * 
+	 * Calling arguments:-Nodo nodo: El nodo para poder calcular el valor maximo.
+	 * 
+	 * Return value:Un numero int que serña el valor maximo.
+	 *
+	 *********************************************************************/
 	public int calcValorMax(Nodo nodo) {
 		int valorMax;
 		if(nodo.getHijoDerecho()!=null) 
