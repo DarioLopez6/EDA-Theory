@@ -56,7 +56,7 @@ public class Main {
 * FileNotFoundException y ArbolVacioException por que se trabaja con ficheros y arboles. Este método se 
 * encargar de hacer y mostrar por pantalla lo que se pide por el archivo según las funciones especificadas.
 * 
-* Calling arguments:- fichero(String): El nombre del fichero del cual se van a leer los datos.
+* Calling arguments:- String fichero : El nombre del fichero del cual se van a leer los datos.
 * 
 * Return value: None.
 * 
