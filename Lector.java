@@ -19,7 +19,7 @@ public interface Lector {
     * esta interfaz.
     *
     * Calling arguments:
-    *   - palabras (String[]): Un vector de cadenas de caracteres que contiene los datos que se van 
+    *   - String[] palabras : Un vector de cadenas de caracteres que contiene los datos que se van 
     *     a leer y asignar en la clase implementadora.
     *
     * Return value: void. No devuelve ningún valor.
