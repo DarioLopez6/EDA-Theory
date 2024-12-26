@@ -17,7 +17,7 @@ public class Linea implements Lector{
 * 
 * Description of the Method: constructor con valores para inicializarlo con esos valores.
 * 
-* Calling arguments:- op(String): El nombre de la operación,
+* Calling arguments:-String op : El nombre de la operación,
 * n(int): El número para la operación.
 * 
 * Return value: None.
@@ -47,7 +47,7 @@ public class Linea implements Lector{
 * 
 * Description of the Method: método para leer los datos y por consiguiente usarlos en la operación.
 * 
-* Calling arguments:- datos(String[]): argumento para leer los datos.
+* Calling arguments:-String[] datos: argumento para leer los datos.
 * 
 * Return value: None.
 * 
@@ -65,7 +65,7 @@ public class Linea implements Lector{
 * 
 * Calling arguments:- None.
 * 
-* Return value: operation(String): devuelve la operación.
+* Return value: String operation : devuelve la operación.
 * 
 *********************************************************************/
 
@@ -80,7 +80,7 @@ public class Linea implements Lector{
 * 
 * Calling arguments:- None.
 * 
-* Return value: num(int): devuelve el número.
+* Return value: int num : devuelve el número.
 * 
 *********************************************************************/
 
