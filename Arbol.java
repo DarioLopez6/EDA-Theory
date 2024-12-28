@@ -68,7 +68,7 @@ public class Arbol {
 	 * en el árbol, de tal forma que, para todo nodo, el valor de su clave
 	 * izquierda será mayor que cualquier valor el el subárbol izquierdo de 
 	 * dicho nodo, su clave derecha (si existe) será mayor o igual que la 
-	 * clave izquierda ymayor que los valores almacenados en los nodos del
+	 * clave izquierda y mayor que los valores almacenados en los nodos del
 	 * subárbol enraizado en el hijo central, pero menor que los valores del 
 	 * subárbol derecho.
 	 * 
